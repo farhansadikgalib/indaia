@@ -13,7 +13,8 @@ class SplashScreenPage extends StatefulWidget {
   _SplashScreenPageState createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage>with TickerProviderStateMixin  {
+class _SplashScreenPageState extends State<SplashScreenPage>
+    with TickerProviderStateMixin {
 
 
   int checkInt = 0;
@@ -30,12 +31,12 @@ class _SplashScreenPageState extends State<SplashScreenPage>with TickerProviderS
         print('No internet connect');
         Timer(
             Duration(seconds: 4),
-                () => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => No_Internet_Connection()),
-                    (route) => false));
-
-
+                () =>
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => No_Internet_Connection()),
+                        (route) => false));
       } else {
         setState(() {
           checkInt = 1;
@@ -43,21 +44,18 @@ class _SplashScreenPageState extends State<SplashScreenPage>with TickerProviderS
         print('Internet connected');
         Timer(
             Duration(seconds: 4),
-                () => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage(url: 'https://areadocliente.eventosindaia.com.br/')),
-                    (route) => false));
+                () =>
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage(
+                        url: 'https://areadocliente.eventosindaia.com.br/')),
+                        (route) => false));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Connected to the internet'),
         ));
       }
     });
-
-
-
   }
-
-
 
 
   @override
@@ -86,7 +84,8 @@ class _SplashScreenPageState extends State<SplashScreenPage>with TickerProviderS
           SpinKitFadingCube(
             color: Colors.white,
             size: 25.0,
-            controller: AnimationController( duration: const Duration(milliseconds:1300),vsync: this),
+            controller: AnimationController(
+                duration: const Duration(milliseconds: 1300), vsync: this),
           ),
 
 
@@ -101,61 +100,3 @@ class _SplashScreenPageState extends State<SplashScreenPage>with TickerProviderS
     );
   }
 }
-//
-// class _AnimatedLiquidLinearProgressIndicator extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() =>
-//       _AnimatedLiquidLinearProgressIndicatorState();
-// }
-//
-// class _AnimatedLiquidLinearProgressIndicatorState
-//     extends State<_AnimatedLiquidLinearProgressIndicator>
-//     with SingleTickerProviderStateMixin {
-//   late AnimationController _animationController;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _animationController = AnimationController(
-//       vsync: this,
-//       duration: Duration(seconds: 4),
-//     );
-//
-//     _animationController.addListener(() => setState(() {}));
-//     _animationController.repeat();
-//   }
-//
-//   @override
-//   void dispose() {
-//     _animationController.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final percentage = _animationController.value * 100;
-//     return Center(
-//       child: Container(
-//         width: 200,
-//         height: 15.0,
-//         padding: EdgeInsets.symmetric(horizontal: 24.0),
-//         child: LiquidLinearProgressIndicator(
-//           value: _animationController.value,
-//           backgroundColor: Colors.brown,
-//           valueColor: AlwaysStoppedAnimation(Colors.white),
-//           borderRadius: 5.0,
-//           borderColor: Colors.white,
-//           borderWidth: 2.0,
-//           // center: Text(
-//           //   "${percentage.toStringAsFixed(0)}%",
-//           //   style: TextStyle(
-//           //     color: Colors.lightBlueAccent,
-//           //     fontSize: 20.0,
-//           //     fontWeight: FontWeight.bold,
-//           //   ),
-//           // ),
-//         ),
-//       ),
-//     );
-//   }
-// }

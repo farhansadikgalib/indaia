@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:indaia/Check_Connection/No%20Internet.dart';
 import 'package:shimmer/shimmer.dart';
+
 class HomePage extends StatefulWidget {
   final String url;
 
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int checkInt = 0;
   late ConnectivityResult previous;
-
 
 
   @override
@@ -36,30 +36,30 @@ class _HomePageState extends State<HomePage> {
     );
 
 
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult connresult){
-      if(connresult == ConnectivityResult.none){
+    Connectivity().onConnectivityChanged.listen((
+        ConnectivityResult connresult) {
+      if (connresult == ConnectivityResult.none) {
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (route) => false );
-      }else if(previous == ConnectivityResult.none){
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (
+            route) => false);
+      } else if (previous == ConnectivityResult.none) {
         // internet conn
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (route) => false );
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (
+            route) => false);
       }
 
       previous = connresult;
     });
-
-
-
-
   }
 
   Future<bool> _onWillPop() async {
     return (await showDialog(
       context: context,
-      builder: (context) => new AlertDialog(
+      builder: (context) =>
+      new AlertDialog(
         title: new Text('Are you sure?'),
         content: new Text('Do you want to exit an App'),
         actions: <Widget>[
@@ -84,6 +84,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   InAppWebViewController? _webViewController;
+
   // double progress = 0;
   String url = '';
 
@@ -120,7 +121,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color.fromRGBO(109, 108, 98, 1),
           title: Shimmer.fromColors(
             baseColor: Colors.white,
-            highlightColor: Color.fromRGBO(178, 140, 99,1),
+            highlightColor: Color.fromRGBO(178, 140, 99, 1),
             child: Column(
               children: [
                 Text(
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
             _webViewController?.reload();
           },
           child: Icon(
-            Icons.refresh,color: Colors.white,
+            Icons.refresh, color: Colors.white,
 
           ),
           backgroundColor: Color.fromRGBO(109, 108, 98, 1),
